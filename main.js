@@ -13,7 +13,7 @@ function appendTaskToUI(task) {
 
   const completeBtn = document.createElement("button");
   completeBtn.className = "btn btn-success";
-  completeBtn.innerHTML = "✔️";
+  completeBtn.innerHTML = "✅";
 
   const updateBtn = document.createElement("button");
   updateBtn.className = "btn btn-warning";
