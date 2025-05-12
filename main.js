@@ -1,6 +1,9 @@
 const input = document.getElementById("task-input");
 const addBtn = document.getElementById("create-task");
 const taskList = document.querySelector(".task-list");
+let deleteAllTask = document.getElementById("delete-allTask")
+
+
 
 function appendTaskToUI(task) {
   const li = document.createElement("li");
@@ -101,6 +104,8 @@ async function updateTask(id, newName, pElement) {
     console.error("فشل التحديث:", err);
   }
 }
+
+
 
 addBtn.addEventListener("click", () => {
   const taskName = input.value.trim();
