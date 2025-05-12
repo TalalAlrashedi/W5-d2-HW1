@@ -1,6 +1,6 @@
-const input = document.getElementById("task-input");
-const addBtn = document.getElementById("create-task");
-const taskList = document.querySelector(".task-list");
+let input = document.getElementById("task-input");
+let addBtn = document.getElementById("create-task");
+let taskList = document.querySelector(".task-list");
 let deleteAllTask = document.getElementById("delete-allTask")
 
 
@@ -29,7 +29,7 @@ function appendTaskToUI(task) {
     }
   });
 
-  const deleteBtn = document.createElement("button");
+  let deleteBtn = document.createElement("button");
   deleteBtn.className = "btn btn-danger";
   deleteBtn.innerHTML = "🗑️";
 
@@ -46,7 +46,7 @@ function appendTaskToUI(task) {
 
 async function createTask(name) {
   try {
-    const res = await fetch(
+    let res = await fetch(
       "https://68219a1b259dad2655afc217.mockapi.io/api/Todo",
       {
         method: "POST",
@@ -54,7 +54,7 @@ async function createTask(name) {
         body: JSON.stringify({ name }),
       }
     );
-    const data = await res.json();
+    let data = await res.json();
     appendTaskToUI(data);
   } catch (err) {
     console.log("حدث خطأ أثناء إضافة المهمة");
@@ -79,10 +79,10 @@ async function deleteTask(id, liElement) {
 
 async function loadTasks() {
   try {
-    const res = await fetch(
+    let res = await fetch(
       "https://68219a1b259dad2655afc217.mockapi.io/api/Todo"
     );
-    const tasks = await res.json();
+    let tasks = await res.json();
     tasks.forEach((task) => appendTaskToUI(task));
   } catch (err) {
     console.error("فشل تحميل المهام:", err);
@@ -90,7 +90,7 @@ async function loadTasks() {
 }
 async function updateTask(id, newName, pElement) {
   try {
-    const res = await fetch(
+    let res = await fetch(
       `https://68219a1b259dad2655afc217.mockapi.io/api/Todo/${id}`,
       {
         method: "PUT",
@@ -98,7 +98,7 @@ async function updateTask(id, newName, pElement) {
         body: JSON.stringify({ name: newName }),
       }
     );
-    const data = await res.json();
+    let data = await res.json();
     pElement.textContent = data.name;
   } catch (err) {
     console.error("فشل التحديث:", err);
@@ -108,7 +108,7 @@ async function updateTask(id, newName, pElement) {
 
 
 addBtn.addEventListener("click", () => {
-  const taskName = input.value.trim();
+  let taskName = input.value.trim();
   if (taskName) {
     createTask(taskName);
     input.value = "";
