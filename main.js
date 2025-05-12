@@ -1,11 +1,15 @@
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
 let input = document.getElementById("task-input");
 let addBtn = document.getElementById("create-task");
 let taskList = document.querySelector(".task-list");
-let deleteAllTask = document.getElementById("delete-allTask")
+let deleteAllTask = document.getElementById("delete-allTask");
 
+function LocalStorageSaved() {
+  localStorage.setItem("tasks", json.stringify(tasks));
+}
 
-
-function appendTaskToUI(task) {
+function setupUI(task) {
   const li = document.createElement("li");
 
   const p = document.createElement("p");
@@ -55,7 +59,7 @@ async function createTask(name) {
       }
     );
     let data = await res.json();
-    appendTaskToUI(data);
+    setupUI(data);
   } catch (err) {
     console.log("حدث خطأ أثناء إضافة المهمة");
     console.error(err);
@@ -83,7 +87,7 @@ async function loadTasks() {
       "https://68219a1b259dad2655afc217.mockapi.io/api/Todo"
     );
     let tasks = await res.json();
-    tasks.forEach((task) => appendTaskToUI(task));
+    tasks.forEach((task) => setupUI(task));
   } catch (err) {
     console.error("فشل تحميل المهام:", err);
   }
@@ -104,8 +108,6 @@ async function updateTask(id, newName, pElement) {
     console.error("فشل التحديث:", err);
   }
 }
-
-
 
 addBtn.addEventListener("click", () => {
   let taskName = input.value.trim();
