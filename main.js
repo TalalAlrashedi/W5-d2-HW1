@@ -27,6 +27,9 @@ function setupUI(task) {
     updateLocalStorage();
   });
 
+  document.getElementById("task-counter").textContent = `عدد المهام: ${tasks.length}`
+
+
   let updateBtn = document.createElement("button");
   updateBtn.className = "btn btn-warning";
   updateBtn.innerHTML = "✏️";
